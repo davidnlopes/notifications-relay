@@ -1,0 +1,24 @@
+name: CI - Baseline Code Coverage
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: codecov-base
+  cancel-in-progress: false
+
+jobs:
+  golang:
+    name: Golang
+    permissions:
+      contents: read
+      pull-requests: read
+      checks: write
+      statuses: write
+    uses: davidnlopes/Reusable.Workflows/.github/workflows/golang.yaml@v1
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    with:
+      buildCommand: make go-lint go-build
+      testCommand: make go-test

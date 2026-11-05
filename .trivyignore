@@ -1,0 +1,86 @@
+# Trivy Ignore File
+# Copy this file to your repository root as '.trivyignore'
+# Documentation: https://aquasecurity.github.io/trivy/latest/docs/configuration/filtering/#by-vulnerability-ids
+#
+# Format:
+#   - One entry per line
+#   - Lines starting with # are comments
+#   - Supports CVE IDs, vulnerability IDs, and package specifiers
+#
+# IMPORTANT: Document WHY each vulnerability is ignored!
+# Review this file regularly and remove entries when fixes are available.
+
+# =============================================================================
+# EXAMPLE: Ignore specific CVEs
+# =============================================================================
+
+# CVE-2023-XXXXX: False positive - not exploitable in our context
+# Affected: example-package v1.2.3
+# Reason: We don't use the vulnerable code path
+# Review date: 2024-01-15
+# CVE-2023-XXXXX
+
+# CVE-2024-YYYYY: No fix available, mitigated by network policy
+# Affected: another-package v4.5.6
+# Reason: Service is not exposed externally, mitigated at network layer
+# Review date: 2024-02-01
+# CVE-2024-YYYYY
+
+# =============================================================================
+# EXAMPLE: Ignore by package (use with caution!)
+# =============================================================================
+
+# Ignore all vulnerabilities in a specific Go package
+# Only use when the package is vendored and patched internally
+# pkg:golang/github.com/example/internal-fork
+
+# =============================================================================
+# EXAMPLE: Ignore vulnerabilities until a specific date
+# =============================================================================
+
+# Format: CVE-ID exp:YYYY-MM-DD
+# The vulnerability will be ignored until the expiration date
+# After expiration, Trivy will report it again
+
+# CVE-2024-ZZZZZ: Temporary ignore while waiting for upstream fix
+# Expected fix in next release (ETA: March 2024)
+# CVE-2024-ZZZZZ exp:2024-03-31
+
+# =============================================================================
+# EXAMPLE: Ignore misconfigurations by ID
+# =============================================================================
+
+# AVD-AWS-0086: S3 bucket logging - handled by centralized logging solution
+# AVD-AWS-0086
+
+# AVD-KSV-0001: Process can elevate privileges - required for init container
+# AVD-KSV-0001
+
+# =============================================================================
+# EXAMPLE: Ignore secrets (use with extreme caution!)
+# =============================================================================
+
+# Only ignore secrets that are:
+# - Test/example values in documentation
+# - Already rotated/invalidated
+# - False positives (e.g., UUIDs detected as secrets)
+
+# generic-api-key: False positive - this is a placeholder in example config
+# examples/config.example.yaml
+
+# =============================================================================
+# COMMON FALSE POSITIVES
+# =============================================================================
+
+# Test fixtures and example files often trigger false positives
+# Consider adding skip-dirs to the Trivy config in Reusable.Workflows instead of ignoring here
+
+# =============================================================================
+# YOUR PROJECT-SPECIFIC IGNORES BELOW
+# =============================================================================
+# Remember to:
+# 1. Document the reason for each ignore
+# 2. Set a review/expiration date
+# 3. Remove entries when fixes become available
+# 4. Review this file in security audits
+

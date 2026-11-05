@@ -1,0 +1,64 @@
+# Copy this file and change the routes. Secret values never go in this file:
+# each *_env field names the environment variable that holds the value.
+
+server:
+  listen: ":8080"
+  max_body_bytes: 1048576
+  max_in_flight: 16
+
+sources:
+  # Receives webhooks at POST /hooks/github.
+  - name: github
+    type: github
+    secret_env: GITHUB_WEBHOOK_SECRET
+
+sinks:
+  - name: review-requests
+    type: discord
+    webhook_url_env: DISCORD_WEBHOOK_REVIEW_REQUESTS
+  - name: ci-failures
+    type: discord
+    webhook_url_env: DISCORD_WEBHOOK_CI_FAILURES
+  - name: pull-requests
+    type: discord
+    webhook_url_env: DISCORD_WEBHOOK_PULL_REQUESTS
+  - name: merges
+    type: discord
+    webhook_url_env: DISCORD_WEBHOOK_MERGES
+  - name: releases
+    type: discord
+    webhook_url_env: DISCORD_WEBHOOK_RELEASES
+
+routes:
+  - name: review-requests-for-me
+    sources: [github]
+    types: [pull_request.review_requested]
+    where:
+      requested_reviewer: [your-github-login]
+    sinks: [review-requests]
+
+  - name: failed-workflows
+    sources: [github]
+    types: [workflow_run.completed]
+    where:
+      conclusion: [failure, timed_out, startup_failure]
+    sinks: [ci-failures]
+
+  - name: new-pull-requests
+    sources: [github]
+    types: [pull_request.opened, pull_request.reopened, pull_request.ready_for_review]
+    unless:
+      author: ["dependabot[bot]"]
+    sinks: [pull-requests]
+
+  - name: merged-pull-requests
+    sources: [github]
+    types: [pull_request.merged]
+    unless:
+      author: ["dependabot[bot]"]
+    sinks: [merges]
+
+  - name: published-releases
+    sources: [github]
+    types: [release.published]
+    sinks: [releases]

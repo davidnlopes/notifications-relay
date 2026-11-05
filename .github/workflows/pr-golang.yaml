@@ -1,0 +1,24 @@
+name: CI - Golang
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read # Required: allow read access to the content for analysis.
+  pull-requests: read # Optional: allow read access to pull request. Use with `only-new-issues` option.
+  checks: write # Optional: allow write access to checks to allow the action to annotate code in the PR.
+  statuses: write # needed for setting the status of the PR
+
+concurrency:
+  group: ${{ github.ref }}-golang-checks
+  cancel-in-progress: true
+
+jobs:
+  golang:
+    name: Golang
+    uses: davidnlopes/Reusable.Workflows/.github/workflows/golang.yaml@v1
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    with:
+      buildCommand: make go-lint go-build
+      testCommand: make go-test

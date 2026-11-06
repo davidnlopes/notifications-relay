@@ -16,7 +16,7 @@ concurrency:
 jobs:
   golang:
     name: Golang
-    uses: davidnlopes/Reusable.Workflows/.github/workflows/golang.yaml@v1
+    uses: davidnlopes/Reusable.Workflows/.github/workflows/golang.yaml@feat/install-task
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     with:

@@ -166,20 +166,20 @@ A source implements `relay.Source`, and a sink implements `relay.Sink`. Both int
 
 ## Develop the relay
 
-Clone with submodules, because the `Makefile` includes the shared targets from `.makefiles`:
+Clone with submodules, because `Taskfile.yml` includes the shared tasks from `.taskfiles`. You also need [Task](https://taskfile.dev) 3.47 or later:
 
 ```bash
 git clone --recurse-submodules https://github.com/davidnlopes/notifications-relay.git
 ```
 
-To list every target, run `make`. These are the targets you use most:
+To list every task, run `task --list`. These are the tasks you use most:
 
-| Target | Purpose |
+| Task | Purpose |
 | --- | --- |
-| `make ready` | Formats, tidies, lints, and tests the code |
-| `make go-test` | Runs the unit tests with the race detector |
-| `make go-build` | Builds `bin/notifications-relay` |
-| `make docker-build` | Builds the container image |
+| `task ready` | Formats, tidies, lints, and tests the code |
+| `task go:test` | Runs the unit tests with the race detector |
+| `task go:build` | Builds `bin/notifications-relay` |
+| `task docker:build` | Builds the container image |
 
 ## Releases
 

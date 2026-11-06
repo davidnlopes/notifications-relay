@@ -1,0 +1,23 @@
+version: '3'
+
+vars:
+  GO_BUILD_PKG: '{{.GO_BUILD_PKG | default "./cmd/notifications-relay"}}'
+  GO_BUILD_OUTPUT: '{{.GO_BUILD_OUTPUT | default (printf "%s/bin/notifications-relay" .ROOT_DIR)}}'
+  GO_BUILD_CGO_ENABLED: '{{.GO_BUILD_CGO_ENABLED | default "0"}}'
+  GO_BUILD_FLAGS: '{{.GO_BUILD_FLAGS | default `-trimpath -ldflags="-s -w"`}}'
+  GO_TEST_FLAGS: '{{.GO_TEST_FLAGS | default "-v -race"}}'
+  DOCKER_IMAGE: '{{.DOCKER_IMAGE | default "notifications-relay"}}'
+  DOCKER_TAGS: '{{.DOCKER_TAGS | default "dev"}}'
+
+includes:
+  go: .taskfiles/golang.yml
+  docker: .taskfiles/docker.yml
+
+tasks:
+  ready:
+    desc: Format, tidy, lint, and test the code
+    cmds:
+      - task: go:fmt
+      - task: go:tidy
+      - task: go:lint
+      - task: go:test

@@ -16,11 +16,11 @@ A generic webhook relay in Go. It receives webhooks from sources, matches them a
 
 | Command | Purpose |
 | --- | --- |
-| `make ready` | Format, tidy, lint, and test. Run this before you open a PR |
-| `make go-test` | Run the unit tests with the race detector |
-| `make docker-build` | Build the container image |
+| `task ready` | Format, tidy, lint, and test. Run this before you open a PR |
+| `task go:test` | Run the unit tests with the race detector |
+| `task docker:build` | Build the container image |
 
-The `Makefile` includes shared targets from the `.makefiles` submodule. Add project-specific targets to the `Makefile`, and do not edit the submodule.
+`Taskfile.yml` includes shared tasks from the `.taskfiles` submodule. Add project-specific tasks to `Taskfile.yml`, and do not edit the submodule.
 
 ## Key directories
 

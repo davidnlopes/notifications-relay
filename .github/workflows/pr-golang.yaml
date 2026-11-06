@@ -20,5 +20,5 @@ jobs:
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     with:
-      buildCommand: make go-lint go-build
-      testCommand: make go-test
+      buildCommand: task go:lint go:build
+      testCommand: task go:test

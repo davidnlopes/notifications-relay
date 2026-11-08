@@ -16,4 +16,6 @@ COPY --from=builder /notifications-relay /notifications-relay
 
 EXPOSE 8080
 
+USER 65532:65532
+
 ENTRYPOINT ["/notifications-relay"]

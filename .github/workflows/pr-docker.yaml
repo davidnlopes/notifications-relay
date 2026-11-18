@@ -13,6 +13,11 @@ concurrency:
 jobs:
   docker:
     name: Docker
-    uses: davidnlopes/Reusable.Workflows/.github/workflows/docker-build.yaml@v1
+    permissions:
+      contents: read
+      statuses: write
+      packages: write
+      id-token: write
+    uses: davidnlopes/Reusable.Workflows/.github/workflows/docker.yaml@v1
     with:
-      dockerFilePath: Dockerfile
+      push: false

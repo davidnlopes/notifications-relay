@@ -73,7 +73,7 @@
 # =============================================================================
 
 # Test fixtures and example files often trigger false positives
-# Consider adding skip-dirs to the Trivy config in Reusable.Workflows instead of ignoring here
+# Consider adding skip-dirs to the Trivy config in reusable-workflows instead of ignoring here
 
 # =============================================================================
 # YOUR PROJECT-SPECIFIC IGNORES BELOW

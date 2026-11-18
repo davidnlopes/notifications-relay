@@ -16,7 +16,7 @@ jobs:
       pull-requests: read
       checks: write
       statuses: write
-    uses: davidnlopes/Reusable.Workflows/.github/workflows/golang.yaml@v1
+    uses: davidnlopes/reusable-workflows/.github/workflows/golang.yaml@v1
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     with:

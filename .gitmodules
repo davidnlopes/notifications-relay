@@ -1,3 +1,3 @@
 [submodule ".taskfiles"]
 	path = .taskfiles
-	url = https://github.com/davidnlopes/Taskfiles.git
+	url = https://github.com/davidnlopes/taskfiles.git

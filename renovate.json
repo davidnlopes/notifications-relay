@@ -2,6 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["local>davidnlopes/renovate-config"],
   "packageRules": [
-    { "matchPackageNames": ["davidnlopes/Reusable.Workflows*"], "enabled": false }
+    { "matchPackageNames": ["davidnlopes/reusable-workflows*"], "enabled": false }
   ]
 }

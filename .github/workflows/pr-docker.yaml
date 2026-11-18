@@ -18,6 +18,6 @@ jobs:
       statuses: write
       packages: write
       id-token: write
-    uses: davidnlopes/Reusable.Workflows/.github/workflows/docker.yaml@v1
+    uses: davidnlopes/reusable-workflows/.github/workflows/docker.yaml@v1
     with:
       push: false

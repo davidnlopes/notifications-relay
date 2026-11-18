@@ -10,7 +10,7 @@ import (
 	"regexp"
 	"slices"
 
-	"go.yaml.in/yaml/v3"
+	"go.yaml.in/yaml/v4"
 
 	"github.com/davidnlopes/notifications-relay/internal/route"
 )
